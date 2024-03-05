@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row offset-md-1 mt-4">
+    <h4 style="background-color: silver;">注文履歴詳細</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 offset-1">
+      <h5>注文情報</h5>
+    </div>
+    <div class="col-md-3">
+      <h5>請求情報</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 offset-1">
+      <table>
+        <thead>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">注文日</th>
+            <td class= "border border-dark p-2"><%= @order.created_at %></td>
+          </tr>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">配送料</th>
+            <td class= "border border-dark p-2">
+              <%= @order.postal_code %>
+              <%= @order.address %><br>
+              <%= @order.name %><br>
+            </td>
+          </tr>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">支払方法</th>
+            <td class= "border border-dark p-2"><%= @order.payment_method %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="col-md-3">
+      <table>
+        <thead>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">商品合計</th>
+            <td class= "border border-dark p-2"><%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">配送料</th>
+            <td class= "border border-dark p-2"><%= 800 %></td>
+          </tr>
+          <tr>
+            <th class= "border border-dark py-2 px-5" style="background-color: #DDDDDD;">ご請求額</th>
+            <td class= "border border-dark p-2"><%= @total=800 + @order.subtotal %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mt-5 offset-1">
+      <h5>商品内容</h5>
+    </div>
+    <div class="row offset-md-1">
+      <div class="col">
+        <table>
+          <thead>
+            <tr>
+              <td class= "border border-dark" style="background-color: #DDDDDD; width: 300px;">商品</td>
+              <td class= "border border-dark p-2" style="background-color: #DDDDDD;  width: 100px;">単価</td>
+              <td class= "border border-dark p-2" style="background-color: #DDDDDD; width: 100px;">個数</td>
+              <td class= "border border-dark p-2" style="background-color: #DDDDDD; width: 100px;">小計</td>
+            </tr>
+          </thead>
+          <tbody>
+          <% @order_details.each do |order_detail| %>
+           <tr>
+            <td class= "border border-dark p-2"><%= order_detail.item.name %></td>
+            <td class= "border border-dark p-2"><%= order_detail.item.price %></td>
+            <td class= "border border-dark p-2"><%= order_detail.amount %></td>
+            <td class= "border border-dark p-2"><%= order_detail.subtotal %></td>
+           </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

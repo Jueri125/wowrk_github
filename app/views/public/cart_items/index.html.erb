@@ -1,0 +1,68 @@
+ <div class="container mt-5">
+     <div class="row">
+       <table class="row offset-2">
+        <thead>
+         <tr>
+          <td>
+            <h4 style="background-color: silver;">ショッピングカート</h4>
+          </td>
+          <td style="padding-left: 300px;">
+            <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
+          </td>
+         </tr>
+        </thead>
+       </table>
+     </div>
+ </div>
+
+ <div class="container mt-4">
+     <div class="row">
+       <table class="row offset-2">
+        <thead>
+         <tr>
+          <th class="border border-dark p-1" style="width: 200px;">商品名</th>
+          <th class="border border-dark p-2" style="width: 150px;">単価(税込)</th>
+          <th class="border border-dark p-2" style="width: 150px;">数量</th>
+          <th class="border border-dark p-2" style="width: 100px;">小計</th>
+          <th class="col-2 border border-dark p-2" style="width: 100px;"></th>
+         </tr>
+        </thead>
+        <tbody>
+       <% @cart_items.each do |cart_item| %>
+         <tr>
+          <td class="border border-dark p-2" style="width: 200px;"><%= cart_item.item.name %></td>
+          <td class="border border-dark p-2" style="width: 150px;"><%= cart_item.item.with_tax_price %></td>
+          <td class="border border-dark p-2" style="width: 150px;">
+         <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+           <%= f.select :amount, *[1..10] %>
+           <%= f.submit "変更" %>
+         <% end %>
+          </td>
+          <td class="border border-dark p-2" style="width: 100px;"><%= cart_item.subtotal%></td>
+          <td class="border border-dark p-2" style="width: 100px;">
+             <%= link_to "削除", cart_item_path(cart_item.id), method: :delete %>
+          </td>
+         </tr>
+         <% @total_price += (cart_item.item.price * 1.1).floor * cart_item.amount %>
+      <% end %>
+          <tr class="row mt-3">
+           <td>
+             <%= link_to(public_path, method: :get, class: "btn btn-secondary") do %>
+             買い物を続ける
+             <% end %>
+           </td>
+           <td class="col offten-3">
+            <td class="border  border-dark p-1 " style="width: 100px;">合計金額</td>
+            <td class="border border-dark p-1 " style="width: 100px;">
+              <%= @total_price %>
+            </td>
+           </td>
+         </tr>
+
+        </tbody>
+       </table>
+         <div class="col offset-5 mt-5">
+          <%= link_to "情報入力", new_order_path, mehod: :get, style: 'background-color: limegreen; color: white;' ,class: 'btn btn-success'%>
+         </div>
+     </div>
+ </div>

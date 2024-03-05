@@ -1,0 +1,59 @@
+<div class="container offset-1">
+  <%= form_with model: @order, url: order_check_path(@order.id), method: :post do |f| %>
+   <div class="row">
+    <h3>注文情報入力</h3>
+   </div>
+   <div class="row">
+    <h4>支払方法</h4>
+  </div>
+  <div class="row offset-1">
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+    <%= f.label Order.payment_methods_i18n[:credit_card] %>
+  </div>
+  <div class="row offset-1">
+    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+    <%= f.label Order.payment_methods_i18n[:transfer] %>
+  </div>
+  <div class="row">
+    <h4>お届け先</h4>
+  </div>
+  <div class="row offset-1">
+    <%= f.radio_button :address_option,0 %><br>
+    <%= f.label :address, "ご自身の住所" %>
+  </div>
+  <div class="row offset-1">
+    <%= f.radio_button :address_option,1 %><br>
+    <%= f.label :address, "新しいお届け先" %>
+  </div>
+  <div class="row offset-1">
+   <div class="col-3">
+    <%= f.label :"郵便番号" %>
+   </div>
+   <div class="col-3">
+    <%= f.text_field :postal_code, :size=>"30" %>
+   </div>
+  </div>
+   <div class="row offset-1">
+    <div class="col-3">
+     <%= f.label :"住所" %>
+    </div>
+    <div class="col-3">
+     <%= f.text_field :address, :size=>"50" %>
+    </div>
+  </div>
+   <div class="row offset-1">
+    <div class="col-3">
+     <%= f.label :"宛名" %>
+    </div>
+    <div class="col-3">
+     <%= f.text_field :name, :size=>"30" %>
+    </div>
+  </div>
+</div>
+
+ <div class="container mt-4 offset-5">
+   <div class="row">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+    </div>
+ <% end %>
+ </div>

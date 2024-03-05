@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row offset-md-2">
+    <h4 style="background-color: silver;">マイページ</h4>
+  </div>
+  <div class="row offset-2 mt-2">
+    <h5>登録情報</h5>
+   <div class="col">
+    <%= link_to "編集する", customers_edit_path, class: "btn btn-secondary", style: "background-color: green; color: white;"  %>
+   </div>
+  </div>
+
+   <div class="row mt-2">
+     <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+       氏名
+     </div>
+     <div class="border border-dark p-2" style="width: 300px;">
+      <%= @customer.last_name %><span> </span><%= @customer.first_name %></th>
+     </div>
+    </div>
+     <div class="row">
+       <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+         カナ
+       </div>
+     <div class="border border-dark p-2" style="width: 300px;">
+      <%= @customer.last_name_kana %><span> </span><%= @customer.first_name_kana %>
+      </div>
+    </div>
+    <div class="row">
+     <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+       郵便番号
+     </div>
+     <div class="border border-dark p-2" style="width: 300px;">
+       <%= @customer.postal_code %>
+     </div>
+    </div>
+     <div class="row">
+      <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+       住所
+      </div>
+      <div class="border border-dark p-2" style="width: 300px;">
+        <%= @customer.address %>
+      </div>
+    </div>
+      <div class="row">
+       <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+        電話番号
+       </div>
+       <div class="border border-dark p-2" style="width: 300px;">
+         <%= @customer.telephone_number %>
+       </div>
+      </div>
+       <div class="row">
+         <div class="col-2 offset-2 border border-dark p-2" style="width: 200px;">
+           メールアドレス
+        </div>
+        <div class="border border-dark p-2" style="width: 300px;">
+          <%= @customer.email %>
+        </div>
+      </div>
+
+     <div class="row offset-2 mt-5">
+       <div class="col-2">
+        <h5>注文履歴</h5>
+       </div>
+      <div class="col ">
+        <%= link_to "一覧を見る", orders_path, class: "btn btn-secondary", style: "background-color: #3399CC; color: white; width: 140px; height: 30px;" %>
+      </div>
+     </div>
+
+</div>

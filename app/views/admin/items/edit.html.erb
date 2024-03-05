@@ -1,0 +1,60 @@
+<div class="container offset-3">
+  <div class="row">
+  <h4 style="background-color: silver;">編集</h4>
+  </div>
+</div>
+<div class="container mt-3 offset-1">
+
+    <%= form_with(model: @item, url: admin_item_path(@item), method: :patch) do |form| %>
+
+    <div class="row mb-3">
+      <div class="col-2 offset-2">
+        <%= form.label :"商品画像" %>
+      </div>
+      <div class="col-7">
+        <%= form.file_field :image %>
+      </div>
+     </div>
+
+    <div class="row mb-3">
+     <div class="col-2 offset-2">
+        <%= form.label :"商品名" %>
+      </div>
+      <div class="col-4">
+        <%= form.text_field :name, class:"form-control"%>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+    <div class="col-2 offset-2">
+      <%= form.label :"商品の説明" %>
+      </div>
+      <div class="col-4">
+      <%= form.text_area :introduction, class:"form-control form-control-lg" %>
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+     <div class="col-2 offset-2">
+      <%= form.label :"税抜価格" %>
+     </div>
+     <div class="col-4">
+      <%= form.number_field :price %>円
+     </div>
+   </div>
+
+    <div class="row mb-3 ">
+     <div class="col-2 offset-2">
+      <%= form.label :"販売ステータス" %>
+     </div>
+    </div>
+
+    <div class="row mb-3 text-center">
+    <div class="col-12">
+      <%= form.submit '変更を保存',style: 'background-color: limegreen; color: white;', class: "btn btn-lg custom-button"%>
+    </div>
+    </div>
+
+    <% end %>
+</div>

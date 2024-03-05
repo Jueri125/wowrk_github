@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row offset-md-2">
+    <h4 style="background-color: silver;">ログイン</h4>
+  </div>
+  <div class="container">
+  <div class="row offset-2 mt-4">
+    <h5 style="background-color: silver;">会員の方はこちらからログイン</h5>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="row mb-1">
+    <div class="col-2 offset-2">
+      <%= f.label :"メールアドレス" %>
+    </div>
+    <div class="email">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", size:"50x30" %>
+    </div>
+  </div>
+
+  <div class="row mb-1">
+    <div class="col-2 offset-2 mt-2">
+      <%= f.label :password %>
+    </div>
+    <div class="pass mt-2">
+      <%= f.password_field :password, autocomplete: "current-password", size:"50x30" %>
+    </div>
+  </div>
+
+
+  <%# if devise_mapping.rememberable? %>
+    <!--<div class="field">
+      <%##= f.label :remember_me %>
+    </div>
+  <#% end %>-->
+
+  <div class="row offset-5 mt-4">
+    <%= f.submit "ログイン", class: "btn btn-secondary", style: "background-color: #3399FF ; color: white;" %>
+  </div>
+    <% end %>
+
+ <div class="row offset-2 mt-4">
+    <h5 style="background-color: silver;">会員登録が済みでない方</h5>
+  </div>
+ <div class="row mt-3">
+   <div class="col-5 offset-3">
+    <%= render "public/shared/links" %>から新規登録を行ってください。
+  </div>
+ </div>

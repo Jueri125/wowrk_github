@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row offset-md-2">
+    <h4 style="background-color: silver;">会員登録編集</h4>
+  </div>
+
+
+<%= form_with model: @customer, url: customers_update_path do |f| %>
+
+      <div class="row mb-1">
+        <div class="col-3 offset-1">
+          <%= f.label :"氏名"%>
+        </div>
+        <div class="col-1">
+          <%= f.label :last_name,"(姓)"%>
+        </div>
+        <div class="col-2">
+          <%= f.text_field :first_name  %>
+        </div>
+        <div class="col-1">
+          <%= f.label :first_name,"(名)" %>
+        </div>
+        <div class="col-2">
+          <%= f.text_field :first_name %>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-3 offset-1">
+          <%= f.label :"フリガナ"%>
+        </div>
+        <div class="col-1">
+          <%= f.label :last_name_kana,"(セイ)"%>
+        </div>
+        <div class="col-2">
+          <%= f.text_field :last_name_kana %>
+        </div>
+        <div class="col-1">
+          <%= f.label :first_name_kana,"(メイ)"%>
+        </div>
+        <div class="col-2">
+          <%= f.text_field :first_name_kana %>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+         <div class="col-3 offset-1">
+           <%= f.label :"メールアドレス" %>
+         </div>
+         <div class="col-1">
+         </div>
+         <div class="col-6">
+           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+         </div>
+      </div>
+
+    <div class="row mt-1">
+      <div class="col-3 offset-1">
+        <%= f.label :"郵便番号" %>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-2">
+        <%= f.text_field :postal_code %>
+      </div>
+    </div>
+
+     <div class="row mt-1">
+     <div class="col-3 offset-1">
+          <%= f.label :"住所" %>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-2 ">
+        <%= f.text_field :address, size:"50x30" %>
+        </div>
+      </div>
+
+     <div class="row mt-1">
+       <div class="col-3 offset-1">
+          <%= f.label :"電話番号(ハイフンなし)" %>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-2">
+          <%= f.text_field :telephone_number %>
+        </div>
+      </div>
+
+    <div class="row mt-5">
+      <div class="col-3 offset-4">
+       <%= f.submit '編集内容を保存', style: 'background-color: limegreen; color: white;', class: "btn btn-lg custom-button"%>
+      </div>
+      <div class="col-3">
+        <%= link_to '退会する', coustomer_check_path, style: 'background-color: #3399FF	; color: white;', class: "btn btn-lg custom-button" %>
+      </div>
+   </div>
+<% end %>
+

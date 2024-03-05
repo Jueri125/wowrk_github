@@ -1,0 +1,36 @@
+<div class="container offset-3">
+  <div class="row">
+    <h4 style="background-color: silver;">商品一覧</h4>
+      <div class="col-md-1 offset-4">
+      <%= link_to new_admin_item_path do %>
+       <i class="fa-solid fa-plus"></i>
+      <% end %>
+      </div>
+  </div>
+</div>
+
+<div class="container offset-3">
+ <div class="row">
+     <table style="width: 50%;">
+       <thead class="thead" style="background-color: silver;">
+        <th style="width: 20%">商品ID</th>
+        <th style="width: 30%">商品名</th>
+        <th style="width: 20%">税抜価格</th>
+       </thead>
+       <tbody>
+       <%  @items.each do |item| %>
+        <tr>
+          <td style="width: 10%"><%= item.id %></td>
+          <td style="width: 30%" ><%= link_to item.name, admin_item_path(item.id) %></td>
+          <td style="width: 10%"><%= item.price %></td>
+        </tr>
+       <% end %>
+      </tbody>
+     </table>
+    </div>
+</div>
+<div class="container mt-5 offset-4">
+  <div class="row">
+   <%= paginate @items %>
+  </div>
+</div>

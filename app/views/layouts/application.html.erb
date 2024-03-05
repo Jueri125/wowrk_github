@@ -1,16 +1,115 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/990dc26cec.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <body class="d-flex flex-column vh-100">
+   <div class="container pl-0 pr-0 flex-grow-1 border-dark border-top border-right border-left">
+    <header class="border-dark border-bottom p-5">
+       <nav class="navbar navbar-expand-lg" >
+        <div class= "container">
+          <a href="/admin/sign_in" class="border border-dark p-4" style="color: black; border-style: groove;">
+            LOGO
+          </a>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <ul class="navbar-nav ml-auto">
+
+         <% if admin_signed_in? %>
+           <li class="nav-link">
+            <%= link_to(admin_items_path, method: :get, class:"btn btn-outline-secondary") do %>
+            商品一覧
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+            <%= link_to(admin_customers_path, method: :get, class:"btn btn-outline-secondary") do %>
+            会員一覧
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+            <%= link_to(admin_path, method: :get, class:"btn btn-outline-secondary") do %>
+            注文履歴一覧
+            <% end %>
+           </li>
+
+            <li class="nav-link">
+             <%= link_to(destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary") do %>
+             ログアウト
+             <% end %>
+           </li>
+         <% elsif customer_signed_in? %>
+           <li class="nav-link">
+             <%= link_to(customers_my_page_path, method: :get,class: "btn btn-outline-secondary") do %>
+             マイページ
+             <% end %>
+           </li>
+
+           <li class="nav-link">
+            <%= link_to(items_path, method: :get,class: "btn btn-outline-secondary") do %>
+             商品一覧
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+            <%= link_to(cart_items_path, mehod: :get,class: "btn btn-outline-secondary") do %>
+             カート
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+             <%= link_to(destroy_customer_session_path, method: :delete, class: "btn btn-secondary") do %>
+              ログアウト
+             <% end %>
+           </li>
+         <% else %>
+           <li class="nav-link">
+            <%= link_to(public_about_path, method: :get, class: "btn btn-secondary") do %>
+             About
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+            <%= link_to(admin_items_path, method: :get, class: "btn btn-secondary") do %>
+             商品一覧
+            <% end %>
+           </li>
+
+           <li class="nav-link">
+             <%= link_to(new_customer_registration_path, method: :get, class: "btn btn-secondary") do %>
+             新規登録
+             <% end %>
+           </li>
+
+           <li class="nav-link">
+             <%= link_to(new_customer_session_path, method: :get, class: "btn btn-secondary") do %>
+              ログイン
+             <% end %>
+           </li>
+
+         <% end %>
+        </div>
+       </div>
+      </nav>
+     </header>
+     <main>
+       <%= yield %>
+     </main>
+     <footer>
+      <div class="container mt-5 border-dark  border-top border-right border-left">
+          <div class="row">
+          </div>
+      </div>
+     </footer>
+    </body>
+   </div>
 </html>

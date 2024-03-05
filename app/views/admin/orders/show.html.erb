@@ -1,0 +1,48 @@
+<div class="container mt-4 offset-2">
+ <div class="row">
+  <h4 style="background-color: silver;">注文履歴詳細</h4>
+ </div>
+</div>
+
+<div class="container mt-3 offset-1">
+  <div class="row">
+      <span class="d-block">購入者   <%= @order.name %><br>
+      <span class="d-block">注文日   <%= @order.updated_at %><br>
+      <span class="d-block">配送先   <%= @order.address %><br>
+      <span class="d-block">支払方法   <%= @order.payment_method %></span>
+   </div>
+</div>
+<div class="container mt-3 offset-1">
+   <div class="row">
+    <div class="col-md-6">
+    <table>
+     <thead>
+      <tr>
+       <th style="width: 150px;  background-color: #DDDDDD;">商品名</th>
+       <th style="width: 100px;  background-color: #DDDDDD;">単価(税込)</th>
+       <th style="width: 100px;  background-color: #DDDDDD;">数量</th>
+       <th style="width: 100px;  background-color: #DDDDDD;">小計</th>
+      </tr>
+     </thead>
+     <tbody>
+        <tr>
+         <% @order_details.each do |order_detail| %>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.price %></td>
+          <td><%= order_detail.item.with_tax_price %></td>
+          <td><%= order_detail.subtotal %></td>
+          <% end %>
+        </tr>
+     </tbody>
+    </table>
+   </div>
+   <div class="col-md-3 mt-5 offset-1">
+    <a>商品合計</a>
+    <a><%= @order_details.sum(&:subtotal) %></a><br>
+    <a>送料</a>
+    <a><%= "800" %></a><br>
+    <a>請求金額合計</a>
+    <a><%= @total=800 + @order_details.sum(&:subtotal) %></a><br>
+   </div>
+  </div>
+</div>

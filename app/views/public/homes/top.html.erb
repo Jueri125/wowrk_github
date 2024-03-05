@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <div class="row">
+   <div class="col-md-3">
+     <table>
+      <thead>
+       <tr>
+        <th class="border border-dark p-2">ジャンル検索</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td class="border-dark border-right border-left p-2">ケーキ</td>
+       </tr>
+       <tr>
+        <td class="border-dark border-right border-left p-2">焼き菓子</td>
+       </tr>
+       <tr>
+        <td class="border-dark border-right border-left p-2">プリン</td>
+       </tr>
+       <tr>
+        <td class="border-dark border-right border-left border-bottom p-2 pb-5">キャンディ</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+     <div class="border-dark border-right border-left border-bottom border-top h-25 p-2">
+      <span >ようこそ、ながのcakeへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の観覧はできますが<br>
+      購入は会員登録が必要になります。</span>
+     </div>
+    <div class= "col-md-7 offset-3">
+     <h3>新商品</h3>
+      <div class="row">
+         <% @items.each do |item| %>
+          <div class="col-md-3">
+            <%= link_to item_path(item.id) do %>
+              <% if item.image.attached? %>
+                 <%= image_tag item.image, size: "80x80" %>
+               <% else %>
+                 <%= image_tag 'no_image', size: "80x80" %>
+               <% end %>
+             <% end %>
+              <br>
+              <strong>商品名</strong>
+               <%= item.name %><br>
+              <strong>￥</strong>
+              <%= item.price %>
+           </div>
+          <% end %>
+       </div>
+   </div>
+ </div>
+
+
